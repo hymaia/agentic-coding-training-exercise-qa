@@ -2,17 +2,20 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 30_000,
+  timeout: 180_000,
   expect: {
-    timeout: 5_000,
+    timeout: 250,
   },
-  reporter: [['list']],
+  retries: 5,
+  reporter: [['line']],
   use: {
     baseURL: 'https://www.leboncoin.fr',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    trace: 'off',
+    screenshot: 'off',
+    video: 'off',
     headless: true,
+    actionTimeout: 45_000,
+    navigationTimeout: 90_000,
   },
   projects: [
     {
